@@ -1,3 +1,6 @@
 [submodule "FurnitureMoverFrontends"]
 	path = FurnitureMoverFrontends
 	url = https://github.com/harveen8/FurnitureMoveFront.git
+[submodule "FurnitureMoverBacks"]
+	path = FurnitureMoverBacks
+	url = https://github.com/harveen8/FurnitureMoverBack.git
