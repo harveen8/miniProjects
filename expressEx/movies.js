@@ -20,7 +20,7 @@ window.onload = async function() {
   };
 
 async function loadMovies(){
-    let response = await fetch("http://localhost:3000");
+    let response = await fetch("http://localhost:3000/movie");
     response = await response.json();
     fillInMovies(response);
 }
@@ -55,7 +55,7 @@ async function addMovie(){
         let inputItem = {
            movie: movieInput.value
         }
-        let response = await fetch("http://localhost:3000", {
+        let response = await fetch("http://localhost:3000/movie", {
             method:'POST',
             mode:'cors',
             headers: {

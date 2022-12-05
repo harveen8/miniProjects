@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments!</title>
+</head>
+<body>
+    <h1 id="title">My Favorite Thriller Movies
+        <button onclick="location.href = 'http://localhost:3001/home';">Home</button>
+    </h1>
+    <h3>Comments</h3>
+    <div id="commentList"></div>
+        <input type="text"id="commentInput">
+        <button id="commentButton">Add comment</button>
+        <p id="commentMessage"> </p>
+       
+</body>
+<script>
+    let commentListDocument= document.getElementById("commentList");
+    let commentInput= document.getElementById("commentInput");
+    let commentButton=document.getElementById("commentButton");
+commentButton.onclick=addComment;
+let commentMessage= document.getElementById("commentMessage");
+window.onload = async function() {
+    await loadComments();
+  };
+async function loadComments(){
+    let response2 = await fetch("http://localhost:3000/comments");
+    response2 = await response2.json();
+    fillInComments(response2);
+}
+function fillInComments(response2){
+    commentListDocument.innerHTML="";
+    let newList= document.createElement("ul");
+    for(let i=0; i< response2.length; i++){
+        let newItem=document.createElement("li");
+        newItem.innerHTML=response2[i];
+        newList.appendChild(newItem);
+    }
+    commentListDocument.appendChild(newList);
+}
+async function addComment(){
+    if(commentInput.value!=""){
+        commentMessage.innerHTML="";
+        let inputItem = {
+           comments: commentInput.value
+        }
+        let response = await fetch("http://localhost:3000/comments", {
+            method:'POST',
+            mode:'cors',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body:JSON.stringify(inputItem)
+        });
+    }else{
+         commentMessage.innerHTML="Must input a comment";
+    }
+    loadComments();
+
+}
+</script>
+</html>

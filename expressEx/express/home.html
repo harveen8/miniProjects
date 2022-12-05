@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movies!</title>
+
+</head>
+<body>
+    <h1>My Favorite Thriller Movies
+        <button onclick="location.href = 'http://localhost:3001/comments';">Comments</button>
+    </h1>
+
+    <h3>Movies</h3>
+    <div id="movieList"></div>
+        <input type="text" id="movieInput">
+        <button id="movieButton">Add movie</button>
+        <p id="movieMessage"> </p>
+
+ 
+</body>
+<script>
+     let movieListDocument= document.getElementById("movieList");
+
+let movieInput= document.getElementById("movieInput");
+
+let movieButton=document.getElementById("movieButton");
+movieButton.onclick=addMovie;
+
+
+let movieMessage= document.getElementById("movieMessage");
+
+
+window.onload = async function() {
+   await loadMovies();
+  };
+
+async function loadMovies(){
+    let response = await fetch("http://localhost:3000/");
+    response = await response.json();
+    fillInMovies(response);
+}
+
+function fillInMovies(response){
+    movieListDocument.innerHTML="";
+    let newList= document.createElement("ul");
+    for(let i=0; i< response.length; i++){
+        let newItem=document.createElement("li");
+        newItem.innerHTML=response[i];
+        newList.appendChild(newItem);
+    }
+    movieListDocument.appendChild(newList);
+}
+
+async function addMovie(){
+    if(movieInput.value!=""){
+        movieMessage.innerHTML="";
+        let inputItem = {
+           movie: movieInput.value
+        }
+        let response = await fetch("http://localhost:3000", {
+            method:'POST',
+            mode:'cors',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body:JSON.stringify(inputItem)
+        });
+    }else{
+        movieMessage.innerHTML="Must input a movie name";
+    }
+    loadMovies();
+}
+   
+</script>
+</html>

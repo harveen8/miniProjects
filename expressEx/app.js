@@ -1,12 +1,14 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const path=require('path');
 const cors = require('cors');
 app.use(cors({
     origin: '*'
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 let listOfMovies= ["Nightcrawler", "Barbarian", "Inception", "It Follows"]
 let comments= ["I love all these movies!", "I could watch It Follows everyday", "Not a fan of Nightcrawler"]
 app.get('/', (req, res) => {
