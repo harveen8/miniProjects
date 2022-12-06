@@ -4,18 +4,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+
     <title>Comments!</title>
+    <style>
+        body{
+            background-color:black;
+            font-family: "Audiowide", sans-serif;
+        }
+        #body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin: 25px;
+            background-color: white;
+            min-height: 600px;
+            
+        }
+        #title{
+            font-size: 50px;
+            border-bottom: 2px red solid;
+        }
+        #back{
+            display: flex;
+            align-self: flex-end;
+        }
+        #sub{
+            font-size: 25px;
+            border-bottom: 2px red solid;
+            margin: -10px;
+        }
+        ul{ 
+            list-style-type: none;
+            overflow: scroll;
+            max-height: 300px;
+         }
+         li{
+            padding: 10px;
+            border: 1px solid grey; 
+            margin:1px;
+            border-radius: 5px;
+         }
+         button{
+            padding: 10px;
+            background-color: white;
+            margin: 2px;
+            border-radius: 25px;
+
+         }
+         button:hover{
+            background-color: rgb(255, 0, 0);
+            color:white;
+            border-color: white;
+         }
+         input{
+            padding: 10px;
+            width: 220px;
+            padding-right: 3px;
+            margin:5px;
+         }
+         p{
+            color: rgb(176, 2, 2);
+         }
+    </style>
 </head>
 <body>
-    <h1 id="title">My Favorite Thriller Movies
-        <button onclick="location.href = 'http://localhost:3001/home';">Home</button>
-    </h1>
-    <h3>Comments</h3>
+<div id="body">
+    <button id="back" onclick="location.href = 'http://localhost:3001/home';">Home</button>
+    <h1 id="title">My Favorite Thriller Movies </h1>
+    <h3 id="sub">Comments</h3>
     <div id="commentList"></div>
-        <input type="text"id="commentInput">
+        <input placeholder="Comment here ..." type="text"id="commentInput">
         <button id="commentButton">Add comment</button>
-        <p id="commentMessage"> </p>
-       
+        <p id="commentMessage" > </p>
+   </div>    
 </body>
 <script>
     let commentListDocument= document.getElementById("commentList");
@@ -62,4 +126,5 @@ async function addComment(){
 
 }
 </script>
+
 </html>
