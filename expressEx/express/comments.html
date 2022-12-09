@@ -31,7 +31,7 @@
             display: flex;
             align-self: flex-end;
         }
-        #sub{
+        .sub{
             font-size: 25px;
             border-bottom: 2px red solid;
             margin: -10px;
@@ -39,14 +39,22 @@
         ul{ 
             list-style-type: none;
             overflow: scroll;
-            max-height: 300px;
+            height: 300px;
          }
          li{
             padding: 10px;
             border: 1px solid grey; 
             margin:1px;
             border-radius: 5px;
+            transition: height 5s transform 2s;
+            width: 300px;
+            transition-timing-function: linear;
+    
          }
+         li:hover {
+          height: 50px;
+          background-color: rgba(0, 0, 0, 0.115);
+        }
          button{
             padding: 10px;
             background-color: white;
@@ -74,8 +82,9 @@
 <div id="body">
     <button id="back" onclick="location.href = 'http://localhost:3001/home';">Home</button>
     <h1 id="title">My Favorite Thriller Movies </h1>
-    <h3 id="sub">Comments</h3>
+    <h3 class="sub">Comments</h3>
     <div id="commentList"></div>
+     <h3 class="sub">Add a Comment</h3>
         <input placeholder="Comment here ..." type="text"id="commentInput">
         <button id="commentButton">Add comment</button>
         <p id="commentMessage" > </p>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/FurnitureMoverBacks" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/FurnitureMoverFrontends" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/jdbcEx/superheroes-11-17-2022" vcs="Git" />
+  </component>
+</project>

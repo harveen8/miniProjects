@@ -39,15 +39,22 @@
         ul{ 
             list-style-type: none;
             overflow: scroll;
-            max-height: 300px;
+            height: 300px;
          }
          li{
-            padding: 12px;
+            padding: 10px;
             font-size: 20px;
             border: 1px solid grey; 
             margin:1px;
             border-radius: 5px;
+            transition: height 5s transform 2s;
+            width: 300px;
+            transition-timing-function: linear;
          }
+         li:hover {
+          height: 50px;
+          background-color: rgba(0, 0, 0, 0.115);
+        }
          button{
             padding: 10px;
             background-color: white;
@@ -79,6 +86,8 @@
     <div id="movieList"></div>
         <input type="text" id="movieInput">
         <button id="movieButton">Add movie</button>
+        <input type="text" id="deleteInput">
+        <button id="deleteButton">Delete Movie</button>
         <p id="movieMessage"> </p>
  </div>
 </body>
@@ -89,6 +98,11 @@ let movieInput= document.getElementById("movieInput");
 
 let movieButton=document.getElementById("movieButton");
 movieButton.onclick=addMovie;
+
+let deleteInput= document.getElementById("deleteInput");
+
+let deleteButton=document.getElementById("deleteButton");
+deleteButton.onclick=deleteMovie;
 
 
 let movieMessage= document.getElementById("movieMessage");
@@ -133,7 +147,24 @@ async function addMovie(){
         movieMessage.innerHTML="Must input a movie name";
     }
     loadMovies();
+    movieInput.value="";
 }
-   
+  
+async function deleteMovie(){
+    if(deleteInput.value!=""){
+        movieMessage.innerHTML="";
+        let response = await fetch("http://localhost:3000"+"/"+deleteInput.value, {
+            method:'DELETE',
+            mode:'cors',
+            headers: {
+                'Content-Type': 'application/json'
+              }
+        });
+    }else{
+        movieMessage.innerHTML="Must input a movie name";
+    }
+    loadMovies();
+    deleteInput.value="";
+}
 </script>
 </html>
